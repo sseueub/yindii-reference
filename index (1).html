@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yindii Korea — Pilot & Partnerships</title>
+
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS
+       To change brand colors, edit the variables below.
+       --green: main accent (Yindii brand green)
+       --ink:   primary text
+       --muted: secondary text / labels
+       --line:  border color
+       --bg-soft: light gray section background
+    ============================================================ */
+
+    :root {
+      --green:    #00A86B;
+      --green-bg: #F0FBF6;
+      --ink:      #111111;
+      --ink-2:    #3A3A3A;
+      --muted:    #888888;
+      --line:     #EAEAEA;
+      --bg-soft:  #F8F8F8;
+      --white:    #FFFFFF;
+      --max-w:    920px;
+      --font:     -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+                  Arial, sans-serif;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ============================================================
+       LAYOUT UTILITY
+    ============================================================ */
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ============================================================
+       TOP BAR (thin green line at top)
+    ============================================================ */
+
+    .top-bar {
+      height: 3px;
+      background-color: var(--green);
+    }
+
+    /* ============================================================
+       SITE HEADER
+    ============================================================ */
+
+    /* EDIT HEADER: brand name and tagline are in the <header> block below */
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .site-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .site-logo span {
+      color: var(--green);
+    }
+
+    .header-meta {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+
+    /* EDIT HERO: title, subtitle, and launch label are in <section class="hero"> */
+
+    .hero {
+      padding: 80px 0 72px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      background-color: var(--green-bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--ink-2);
+      max-width: 520px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       SECTION SHARED STYLES
+    ============================================================ */
+
+    .section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .section-headline {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .section-body {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* ============================================================
+       SECTION 1: CURRENT & ONGOING PARTNERS
+       EDIT PARTNERS: Each partner is a <div class="partner-card"> below.
+       Edit the name, Korean name, and the <span class="tag"> status label.
+    ============================================================ */
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .partner-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .partner-card:hover {
+      border-color: #D0D0D0;
+    }
+
+    .partner-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .partner-name-ko {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* EDIT STATUS TAGS: change "Pilot" / "Test" text inside <span class="tag"> */
+    /* To add a new status color, duplicate .tag--pilot and change the colors. */
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tag--pilot {
+      background-color: var(--green-bg);
+      color: var(--green);
+    }
+
+    .tag--test {
+      background-color: #F5F5F5;
+      color: #666666;
+    }
+
+    /* Alpha Test — amber/warm tone to indicate active early-stage testing */
+    .tag--alpha {
+      background-color: #FFF7ED;
+      color: #C2610A;
+    }
+
+    /* ============================================================
+       SECTION 2: WHAT WE DO
+    ============================================================ */
+
+    /* EDIT WHAT WE DO: edit the <ul class="value-list"> items below */
+
+    .value-list {
+      list-style: none;
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .value-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 24px;
+      font-size: 14px;
+      color: var(--ink-2);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .value-list li:nth-child(2n) {
+      border-right: none;
+    }
+
+    .value-list li:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .value-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       SECTION 3 & 4: DETAIL ROWS (Pilot Structure / Regional Expansion)
+    ============================================================ */
+
+    /* EDIT DETAIL ROWS: Each row is a <div class="detail-row"> with a label and value */
+
+    .detail-table {
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+
+    .detail-value {
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+
+    .detail-value strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       SECTION 5: CONTACT
+       EDIT CONTACT: Change name, role, email, and website below.
+    ============================================================ */
+
+    .contact-block {
+      margin-top: 32px;
+      background-color: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .contact-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .contact-role {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-link {
+      font-size: 14px;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-link-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .contact-note {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 280px;
+      line-height: 1.6;
+      padding-top: 4px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+
+    .site-footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-url {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+
+    @media (max-width: 640px) {
+
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .site-header .wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .hero {
+        padding: 52px 0 48px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .partner-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-list {
+        grid-template-columns: 1fr;
+      }
+
+      .value-list li {
+        border-right: none;
+      }
+
+      .value-list li:nth-last-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .value-list li:last-child {
+        border-bottom: none;
+      }
+
+      .detail-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .detail-label {
+        min-width: unset;
+      }
+
+      .contact-block {
+        padding: 28px 24px;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-note {
+        max-width: 100%;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+    }
+
+    /* ============================================================
+       PILOT STRUCTURE STEP CARDS
+    ============================================================ */
+
+    .section--pilot {
+      background-color: var(--bg-soft);
+    }
+
+    .pilot-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .pilot-step {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px 24px 28px;
+    }
+
+    .pilot-step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .pilot-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .pilot-step-desc {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+
+    .pilot-step-arrow {
+      font-size: 18px;
+      color: var(--line);
+      padding: 0 12px;
+      margin-top: 36px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 640px) {
+      .pilot-steps {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .pilot-step-arrow {
+        transform: rotate(90deg);
+        margin: 0 auto;
+        padding: 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       TOP ACCENT LINE (green rule at very top of page)
+  ============================================================ -->
+  <div class="top-bar"></div>
+
+
+  <!-- ============================================================
+       SITE HEADER
+       EDIT: Change the logo name or header meta text here.
+  ============================================================ -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="site-logo">Yindii <span>Korea</span></div>
+      <div class="header-meta">Partnership Reference — Confidential</div>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       EDIT: title, subtitle, and launch label are directly below.
+  ============================================================ -->
+  <section class="hero">
+    <div class="wrap">
+
+      <!-- EDIT: Launch label / status indicator -->
+      <div class="label">Korea Launch Preparation · June 2026</div>
+
+      <!-- EDIT: Main page title -->
+      <h1 class="hero-title">Yindii Korea Pilot &amp; Partnerships</h1>
+
+      <!-- EDIT: Subtitle / value proposition -->
+      <p class="hero-subtitle">
+        Turning surplus food into additional revenue for F&amp;B brands.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 1: CURRENT & ONGOING
+       EDIT: Add or remove <div class="partner-card"> blocks.
+       Status tag options: class="tag tag--pilot" or class="tag tag--test"
+       To add a new status, add a new .tag--X rule in the CSS above.
+  ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="section-label">Current &amp; Ongoing</div>
+
+      <div class="partner-grid">
+
+        <!-- Partner 1 -->
+        <div class="partner-card">
+          <div>
+            <div class="partner-name">Tous Les Jours</div>
+            <div class="partner-name-ko">뚜레쥬르</div>
+          </div>
+          <span class="tag tag--alpha">Alpha Test</span>
+        </div>
+
+        <!-- Partner 2 -->
+        <div class="partner-card">
+          <div>
+            <div class="partner-name">Paris Baguette</div>
+            <div class="partner-name-ko">파리바게뜨</div>
+          </div>
+          <span class="tag tag--alpha">Alpha Test</span>
+        </div>
+
+        <!-- Partner 3 -->
+        <div class="partner-card">
+          <div>
+            <div class="partner-name">Gontran Cherrier</div>
+            <div class="partner-name-ko">곤트란쉐리에</div>
+          </div>
+          <span class="tag tag--alpha">Alpha Test</span>
+        </div>
+
+        <!-- Partner 4 -->
+        <div class="partner-card">
+          <div>
+            <div class="partner-name">Super Kitchen</div>
+            <div class="partner-name-ko">슈퍼키친</div>
+          </div>
+          <span class="tag tag--alpha">Alpha Test</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2: WHAT WE DO
+       EDIT: main headline, supporting paragraph, and list items below.
+  ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="section-label">What We Do</div>
+
+      <!-- EDIT: Main sentence -->
+      <p class="section-headline">
+        Yindii helps stores sell surplus food to nearby consumers,<br>
+        reducing waste while creating additional revenue.
+      </p>
+
+      <!-- EDIT: Supporting list items -->
+      <ul class="value-list">
+        <li><span class="value-dot"></span>Reduce food waste</li>
+        <li><span class="value-dot"></span>Create incremental sales</li>
+        <li><span class="value-dot"></span>Drive new customer discovery</li>
+        <li><span class="value-dot"></span>Protect brand image</li>
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: PILOT STRUCTURE
+       EDIT: pilot-step cards below — each has a number, title, and description.
+       detail-row table beneath holds location/format/goal meta.
+  ============================================================ -->
+  <section class="section section--pilot">
+    <div class="wrap">
+
+      <div class="section-label">Pilot Structure</div>
+
+      <p class="section-headline" style="margin-bottom: 32px;">
+        How the alpha test works — store to consumer, end to end.
+      </p>
+
+      <!-- Three-step flow cards -->
+      <div class="pilot-steps">
+
+        <div class="pilot-step">
+          <div class="pilot-step-num">01</div>
+          <div class="pilot-step-title">Partner Onboarding</div>
+          <div class="pilot-step-desc">Selected F&amp;B stores join the pilot. Surplus inventory is registered on the Yindii platform each day.</div>
+        </div>
+
+        <div class="pilot-step-arrow">→</div>
+
+        <div class="pilot-step">
+          <div class="pilot-step-num">02</div>
+          <div class="pilot-step-title">Consumer Discovery</div>
+          <div class="pilot-step-desc">Nearby consumers find and purchase surplus items at a discount through the Yindii app before close of business.</div>
+        </div>
+
+        <div class="pilot-step-arrow">→</div>
+
+        <div class="pilot-step">
+          <div class="pilot-step-num">03</div>
+          <div class="pilot-step-title">Validate &amp; Iterate</div>
+          <div class="pilot-step-desc">Sell-through rates, demand signals, and operational feedback are collected to refine the model for full launch.</div>
+        </div>
+
+      </div>
+
+      <!-- Meta detail rows below the flow -->
+      <div class="detail-table" style="margin-top: 28px;">
+
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Seoul, selected stores</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Format</span>
+          <span class="detail-value">Surplus food → nearby consumers</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Goal</span>
+          <span class="detail-value">Validate demand, sell-through, and operational flow</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4: REGIONAL EXPANSION
+       EDIT: Update market names, launch dates, or add new rows.
+  ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="section-label">Regional Expansion</div>
+
+      <div class="detail-table">
+
+        <div class="detail-row">
+          <span class="detail-label">Origin</span>
+          <span class="detail-value"><strong>Thailand</strong></span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Active Markets</span>
+          <span class="detail-value">Singapore &nbsp;·&nbsp; Hong Kong</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Korea Launch</span>
+          <span class="detail-value"><strong>June 2026</strong></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: CONTACT
+       EDIT: Name, Korean name, role, email, and website below.
+  ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="section-label">Contact</div>
+
+      <div class="contact-block">
+
+        <div>
+          <!-- EDIT: Full name (English · Korean) -->
+          <div class="contact-name">Juan Kim &nbsp;·&nbsp; 김환</div>
+
+          <!-- EDIT: Job title -->
+          <div class="contact-role">Head of Partnerships, Yindii Korea</div>
+
+          <div class="contact-links">
+
+            <!-- EDIT: Email address in both href and display text -->
+            <a class="contact-link" href="mailto:juan@yindii.app">
+              <svg class="contact-link-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="#00A86B" stroke-width="1.3"/>
+                <path d="M1.5 4.5L8 9.5L14.5 4.5" stroke="#00A86B" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+              juan@yindii.app
+            </a>
+
+            <!-- EDIT: Website URL in both href and display text -->
+            <a class="contact-link" href="https://www.yindii.co" target="_blank" rel="noopener">
+              <svg class="contact-link-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="6.5" stroke="#00A86B" stroke-width="1.3"/>
+                <ellipse cx="8" cy="8" rx="2.8" ry="6.5" stroke="#00A86B" stroke-width="1.3"/>
+                <line x1="1.5" y1="6" x2="14.5" y2="6" stroke="#00A86B" stroke-width="1.3"/>
+                <line x1="1.5" y1="10" x2="14.5" y2="10" stroke="#00A86B" stroke-width="1.3"/>
+              </svg>
+              www.yindii.co
+            </a>
+
+          </div>
+        </div>
+
+        <!-- EDIT: Side note or disclaimer text -->
+        <p class="contact-note">
+          For partnership inquiries, pilot opportunities,
+          or questions about the Korea launch — please reach out directly.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       EDIT: Copyright year, company name, or URL.
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="footer-copy">© 2026 Yindii. All rights reserved.</span>
+      <span class="footer-url">yindii.co</span>
+    </div>
+  </footer>
+
+</body>
+</html>
