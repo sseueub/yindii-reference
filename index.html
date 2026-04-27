@@ -159,6 +159,26 @@
       font-weight: 400;
     }
 
+    /* Small note line below subtitle */
+    .hero-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-note::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--green);
+      flex-shrink: 0;
+    }
+
     /* ============================================================
        SECTION SHARED STYLES
     ============================================================ */
@@ -601,7 +621,7 @@
   <header class="site-header">
     <div class="wrap">
       <div class="site-logo">Yindii <span>Korea</span></div>
-      <div class="header-meta">Partnership Reference — Confidential</div>
+      <div class="header-meta">Confidential · For Partnership Discussion Only</div>
     </div>
   </header>
 
@@ -621,7 +641,12 @@
 
       <!-- EDIT: Subtitle / value proposition -->
       <p class="hero-subtitle">
-        Turning surplus food into additional revenue for F&amp;B brands.
+        Turn unsold inventory into incremental revenue for F&amp;B brands.
+      </p>
+
+      <!-- EDIT: Pilot note shown below subtitle -->
+      <p class="hero-note">
+        Currently piloting with selected franchise partners in Seoul.
       </p>
 
     </div>
