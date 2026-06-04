@@ -1,1 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yindii × Tous Les Jours Korea — 10-Store Pilot Proposal</title>
 
+  <style>
+    :root {
+      --green:    #00A86B;
+      --green-bg: #F0FBF6;
+      --ink:      #111111;
+      --ink-2:    #3A3A3A;
+      --muted:    #888888;
+      --line:     #EAEAEA;
+      --bg-soft:  #F8F8F8;
+      --white:    #FFFFFF;
+      --max-w:    920px;
+      --font:     -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+
+    /* TOP BAR */
+    .top-bar { height: 3px; background-color: var(--green); }
+
+    /* HEADER */
+    .site-header { border-bottom: 1px solid var(--line); padding: 20px 0; }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .site-logo { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+    .site-logo span { color: var(--green); }
+    .header-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+
+    /* HERO */
+    .hero { padding: 64px 0 56px; border-bottom: 1px solid var(--line); }
+
+    .label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--green);
+      background-color: var(--green-bg);
+      padding: 4px 10px; border-radius: 4px; margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 40px);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
+      color: var(--ink); max-width: 640px; margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px; color: var(--ink-2); max-width: 540px;
+      line-height: 1.65; font-weight: 400; margin-bottom: 20px;
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .hero-tag {
+      font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 4px;
+      border: 1px solid var(--line); color: var(--ink-2);
+      background: var(--white);
+    }
+    .hero-tag.g {
+      background: var(--green-bg); color: var(--green);
+      border-color: #B8E6CC;
+    }
+
+    /* SECTIONS */
+    .section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+    .section:last-of-type { border-bottom: none; }
+    .section--soft { background-color: var(--bg-soft); }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 28px;
+    }
+
+    .section-headline {
+      font-size: 20px; font-weight: 600; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 10px; line-height: 1.4;
+    }
+
+    .section-body {
+      font-size: 15px; color: var(--ink-2); line-height: 1.7; max-width: 620px;
+    }
+
+    /* TWO-COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px; }
+
+    .col-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+
+    /* VALUE LIST */
+    .value-list { list-style: none; display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .value-list li {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 18px; font-size: 13.5px; color: var(--ink-2);
+      border-bottom: 1px solid var(--line);
+    }
+    .value-list li:last-child { border-bottom: none; }
+    .value-dot { width: 6px; height: 6px; border-radius: 50%; background-color: var(--green); flex-shrink: 0; }
+
+    /* METRIC CARDS */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px; margin-top: 24px;
+    }
+    .metric-card {
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 18px 16px; text-align: center;
+    }
+    .metric-label { font-size: 11px; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
+    .metric-value { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+    .metric-value.g { color: var(--green); }
+    .metric-sub { font-size: 11px; color: #AAAAAA; margin-top: 4px; }
+
+    /* DETAIL TABLE */
+    .detail-table {
+      margin-top: 24px; border: 1px solid var(--line);
+      border-radius: 10px; overflow: hidden;
+    }
+    .detail-row {
+      display: flex; align-items: baseline; gap: 24px;
+      padding: 14px 24px; border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted);
+      min-width: 160px; flex-shrink: 0;
+    }
+    .detail-value { color: var(--ink-2); line-height: 1.55; }
+    .detail-value strong { color: var(--ink); font-weight: 600; }
+
+    /* TIMELINE CARDS */
+    .tl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .tl-card {
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 20px 22px; background: var(--white);
+    }
+    .tl-month {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 8px;
+    }
+    .tl-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .tl-body { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      border-left: 2px solid var(--green);
+      background: var(--green-bg);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13.5px; color: var(--ink-2); line-height: 1.7;
+      margin-top: 20px;
+    }
+    .highlight-box strong { color: #1d7a42; }
+
+    /* NOTE */
+    .note {
+      font-size: 12px; color: var(--muted);
+      margin-top: 14px; line-height: 1.55;
+    }
+
+    /* REQUEST LIST */
+    .req-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .req-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 16px 24px; border-bottom: 1px solid var(--line); font-size: 14px;
+    }
+    .req-item:last-child { border-bottom: none; }
+    .req-num { font-size: 11px; font-weight: 700; color: var(--green); min-width: 16px; padding-top: 1px; flex-shrink: 0; }
+    .req-text { color: var(--ink-2); line-height: 1.6; }
+
+    /* CONTACT */
+    .contact-block {
+      margin-top: 28px; background-color: var(--bg-soft);
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 36px 40px; display: flex;
+      align-items: flex-start; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .contact-name { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px; }
+    .contact-role { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+    .contact-links { display: flex; flex-direction: column; gap: 8px; }
+    .contact-link {
+      font-size: 14px; color: var(--green);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-link-icon { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+    .contact-note { font-size: 13px; color: var(--muted); max-width: 260px; line-height: 1.65; padding-top: 4px; }
+
+    /* FOOTER */
+    .site-footer { padding: 24px 0; border-top: 1px solid var(--line); }
+    .site-footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-url { font-size: 12px; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .wrap { padding: 0 20px; }
+      .site-header .wrap { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .hero { padding: 48px 0 40px; }
+      .hero-subtitle { font-size: 15px; }
+      .section { padding: 44px 0; }
+      .two-col { grid-template-columns: 1fr; gap: 28px; }
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .metric-grid .metric-card:last-child { grid-column: span 2; }
+      .tl-grid { grid-template-columns: 1fr; }
+      .detail-row { flex-direction: column; gap: 4px; }
+      .detail-label { min-width: unset; }
+      .contact-block { padding: 28px 24px; flex-direction: column; gap: 20px; }
+      .contact-note { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="site-logo">Yindii <span>×</span> Tous Les Jours</div>
+      <div class="header-meta">Confidential · For Internal Review Only</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="label">Pilot Proposal · Seoul · June 2026</div>
+      <h1 class="hero-title">Yindii × Tous Les Jours Korea<br>10-Store Pilot Proposal</h1>
+      <p class="hero-subtitle">
+        A 2-month pilot proposal to convert end-of-day bakery surplus into incremental store revenue.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag g">10-Store Pilot</span>
+        <span class="hero-tag">20% Commission · No Monthly Fee</span>
+        <span class="hero-tag">Seoul Focus</span>
+        <span class="hero-tag">July–August Pilot</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: ABOUT YINDII + WHY TOUS LES JOURS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">01 · About Yindii &amp; Fit with Tous Les Jours</div>
+      <div class="two-col">
+        <div>
+          <div class="col-label">About Yindii</div>
+          <p class="section-body" style="font-size:14px; margin-bottom: 16px;">
+            Yindii is a food surplus platform connecting F&amp;B stores with nearby consumers.
+            The <strong>Surprise Bag</strong> model bundles end-of-day unsold items into a discounted
+            pickup bag — generating incremental revenue from inventory that would otherwise be discarded.
+            No delivery operations required.
+          </p>
+          <ul class="value-list">
+            <li><span class="value-dot"></span>Pickup-based — no delivery logistics</li>
+            <li><span class="value-dot"></span>New customer acquisition channel</li>
+            <li><span class="value-dot"></span>Founded in Thailand · Operating in Singapore &amp; Hong Kong</li>
+            <li><span class="value-dot"></span>Supports ESG commitments on food waste reduction</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">Why Tous Les Jours</div>
+          <ul class="value-list">
+            <li><span class="value-dot"></span>Daily bakery surplus aligns well with the Surprise Bag model</li>
+            <li><span class="value-dot"></span>Benchmark data available from Tous Les Jours Singapore (3 stores) — useful as a reference for Korea</li>
+            <li><span class="value-dot"></span>Nationwide franchise network supports potential scaling after the pilot</li>
+            <li><span class="value-dot"></span>Aligns with CJ Group's ESG direction on food waste reduction</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SINGAPORE BENCHMARK -->
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-label">02 · Reference Benchmark</div>
+      <h2 class="section-headline">Tous Les Jours Singapore — Operating Data (3 Stores)</h2>
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Participating<br>Stores</div>
+          <div class="metric-value">3</div>
+          <div class="metric-sub">Singapore</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total Annual<br>Revenue</div>
+          <div class="metric-value g">₩74M</div>
+          <div class="metric-sub">via Yindii channel</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Revenue per<br>Store / Month</div>
+          <div class="metric-value g">₩2.06M</div>
+          <div class="metric-sub">monthly avg.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Est. Store Net<br>Revenue / Month</div>
+          <div class="metric-value">₩1.54M</div>
+          <div class="metric-sub">after 20% commission</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Saved<br>Ratio</div>
+          <div class="metric-value g">99.6%</div>
+          <div class="metric-sub">inventory sell-through</div>
+        </div>
+      </div>
+      <p class="note">※ Singapore figures are provided as a reference benchmark only. Korea pilot performance will depend on local market conditions and is not guaranteed to reflect these results.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: KOREA PILOT PLAN -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">03 · Korea Pilot Plan</div>
+      <h2 class="section-headline">2-Month Pilot · 10 Stores · Seoul</h2>
+
+      <div class="tl-grid">
+        <div class="tl-card">
+          <div class="tl-month">June</div>
+          <div class="tl-title">Preparation &amp; Onboarding</div>
+          <div class="tl-body">Store selection · Point-of-contact alignment · Onboarding schedule confirmed</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-month">July</div>
+          <div class="tl-title">Pilot Phase 1</div>
+          <div class="tl-body">Surprise Bag launch · Demand signal collection · Operational feedback gathered</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-month">August</div>
+          <div class="tl-title">Phase 2 &amp; Review</div>
+          <div class="tl-body">KPI data review · Results summary · Discussion on next steps</div>
+        </div>
+      </div>
+
+      <div class="detail-table">
+        <div class="detail-row">
+          <span class="detail-label">Store Count</span>
+          <span class="detail-value">10 stores</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Location Focus</span>
+          <span class="detail-value">Seoul — office districts and university areas</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Duration</span>
+          <span class="detail-value">2 months (July–August operations)</span>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Pilot objectives</strong><br>
+        · Assess feasibility of generating at least <strong>₩500K additional revenue per store / month</strong><br>
+        · Observe new customer acquisition via the Surprise Bag channel<br>
+        · Track whether Surprise Bag users return to purchase regular menu items<br>
+        <span style="font-size:12px; color:#888; display:block; margin-top:8px;">※ Internal reference: in other markets, a portion of Surprise Bag users have returned for regular purchases. This pattern has not been validated in Korea.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: OPERATIONS + PILOT TERMS -->
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-label">04 · Operations &amp; Pilot Terms</div>
+      <div class="two-col">
+        <div>
+          <div class="col-label">How It Works</div>
+          <div class="detail-table" style="margin-top: 0;">
+            <div class="detail-row">
+              <span class="detail-label">Step 1</span>
+              <span class="detail-value">Store staff list end-of-day surplus items in the Yindii app. Setup support is available from the Yindii team.</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Step 2</span>
+              <span class="detail-value">Each store sets its own pickup window. No delivery operations required.</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Step 3</span>
+              <span class="detail-value">Customers purchase via app and collect in-store within the designated window.</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Step 4</span>
+              <span class="detail-value">Commission applies to completed transactions only.</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="col-label">Pilot Terms</div>
+          <div class="detail-table" style="margin-top: 0;">
+            <div class="detail-row">
+              <span class="detail-label">Monthly Fee</span>
+              <span class="detail-value">No platform fee during the pilot period</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Commission</span>
+              <span class="detail-value">20% on completed sales</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Fulfillment</span>
+              <span class="detail-value">Pickup-based only — no delivery logistics</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Support</span>
+              <span class="detail-value">Staff manual, onboarding support, and store visits from Yindii team</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: REQUESTS + NEXT STEPS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">05 · Proposed Next Steps</div>
+      <h2 class="section-headline">To Move Forward with the Pilot</h2>
+      <p class="section-body" style="margin-bottom: 0; font-size: 14px;">
+        The following items are requested from the CJ / Tous Les Jours side to initiate the pilot.
+      </p>
+
+      <ul class="req-list">
+        <li class="req-item">
+          <span class="req-num">①</span>
+          <span class="req-text">Assign a project lead / point of contact on the CJ / Tous Les Jours side</span>
+        </li>
+        <li class="req-item">
+          <span class="req-num">②</span>
+          <span class="req-text">Identify approximately 20 candidate stores in Seoul — the Yindii team can visit each location to walk through the service in detail</span>
+        </li>
+        <li class="req-item">
+          <span class="req-num">③</span>
+          <span class="req-text">Select the final 10 pilot stores following an initial review of the candidate list</span>
+        </li>
+        <li class="req-item">
+          <span class="req-num">④</span>
+          <span class="req-text">Align on an onboarding schedule for each participating store</span>
+        </li>
+      </ul>
+
+      <div class="highlight-box" style="margin-top: 20px;">
+        <strong>Suggested timeline:</strong> If alignment is confirmed in June, operations can begin in July with a full review completed by end of August.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">Contact</div>
+      <div class="contact-block">
+        <div>
+          <div class="contact-name">Juan Kim (김환)</div>
+          <div class="contact-role">Head of Partnerships, Yindii Korea</div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:juan@yindii.app">
+              <svg class="contact-link-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="#00A86B" stroke-width="1.3"/>
+                <path d="M1.5 4.5L8 9.5L14.5 4.5" stroke="#00A86B" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+              juan@yindii.app
+            </a>
+            <a class="contact-link" href="https://www.yindii.co" target="_blank" rel="noopener">
+              <svg class="contact-link-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="6.5" stroke="#00A86B" stroke-width="1.3"/>
+                <ellipse cx="8" cy="8" rx="2.8" ry="6.5" stroke="#00A86B" stroke-width="1.3"/>
+                <line x1="1.5" y1="6" x2="14.5" y2="6" stroke="#00A86B" stroke-width="1.3"/>
+                <line x1="1.5" y1="10" x2="14.5" y2="10" stroke="#00A86B" stroke-width="1.3"/>
+              </svg>
+              www.yindii.co
+            </a>
+          </div>
+        </div>
+        <p class="contact-note">
+          For pilot participation, store selection inquiries, or additional materials,
+          please feel free to reach out at your convenience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="footer-copy">© 2026 Yindii. Confidential — for internal review only. Not for further distribution without prior consent.</span>
+      <span class="footer-url">yindii.co</span>
+    </div>
+  </footer>
+
+</body>
+</html>
